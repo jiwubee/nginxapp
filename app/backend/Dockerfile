@@ -1,10 +1,11 @@
 FROM node:20-alpine
 
+RUN apk add --no-cache wget curl
+
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
 
-# Prawidłowy syntax
 RUN npm ci --omit=dev || npm install --production
 
 COPY server.js .
